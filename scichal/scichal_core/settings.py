@@ -47,9 +47,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'scichal.urls'
+ROOT_URLCONF = 'scichal_core.urls'
 
-WSGI_APPLICATION = 'scichal.wsgi.application'
+WSGI_APPLICATION = 'scichal_core.wsgi.application'
 
 
 # Database
