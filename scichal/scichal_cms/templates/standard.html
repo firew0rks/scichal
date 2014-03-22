@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}{% if show_title %} - {{ title }}{% endif %}{% endblock %}
+
+{% block body_class %}{{ body_class }}{% endblock %}
+
+{% block body %}
+{{ body|safe }}
+{% endblock body %}

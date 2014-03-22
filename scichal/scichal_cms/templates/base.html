@@ -1,0 +1,143 @@
+{% load staticfiles %}<!DOCTYPE HTML>
+<!--
+    Robogals Science Challenge
+    
+    2014, Robogals Software Team
+    
+    ====
+    
+    Design based on Verti 2.5 by HTML5 UP | CCA 3.0 license | html5up.net/license
+-->
+<html lang="en-AU">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Robogals Science Challenge{% block title %}{% endblock %}</title>
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,800" rel="stylesheet" type="text/css">
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/config.js' %}"></script>
+        <script src="{% static 'js/skel.min.js' %}"></script>
+        <script src="{% static 'js/skel-panels.min.js' %}"></script>
+        <noscript>
+            <link rel="stylesheet" href="{% static 'css/skel-noscript.css' %}">
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+            <link rel="stylesheet" href="{% static 'css/style-desktop.css' %}">
+        </noscript>
+        <!--[if lte IE 8]><script src="{% static 'js/html5shiv.js' %}"></script><![endif]-->
+    </head>
+    <body class="{% block body_class %}no-sidebar{% endblock %}"><!--[if lte IE 8]><div id="ie-warning"><b>Your version of Internet Explorer is unsupported</b><br>Consider upgrading, or use an alternative browser such as <a href="http://chrome.google.com">Google Chrome</a>, <a href="http://www.mozilla.org/firefox">Mozilla Firefox</a> or <a href="http://www.opera.com">Opera</a></div><![endif]-->
+        {% block header %}
+        <div id="header-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="12u">
+                        
+                        <!-- Header -->
+                        <header id="header">
+                            
+                            <!-- Logo -->
+                            <div id="logo">
+                                <h1><a href="/"><img src="{% static 'images/logo.png' %}" alt="Robogals Science Challenge"></a></h1>
+                            </div>
+                            
+                            <!-- Nav -->
+                            <nav id="nav">
+                                <ul>
+                                    {% for item in menu_items %}
+                                    <li><a href="/{{ item.resource_id }}">{{ item.title }}</a></li>
+                                    {% endfor %}
+                                    <li><a href="#">Log in / Register</a></li>
+                                </ul>
+                            </nav>
+                            
+                        </header>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock header %}
+        <!-- Body -->
+        {% block body %}{% endblock %}
+        <!-- End Body -->
+        {% block footer %}
+        <div id="footer-wrapper">
+            <footer id="footer" class="container">
+                <div class="row">
+                    <div class="3u">
+                        
+                        <!-- Links -->
+                        <section class="widget-links">
+                            <h2>Random Stuff</h2>
+                            <ul class="style2">
+                                <li><a href="#">Etiam feugiat condimentum</a></li>
+                                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                                <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                                <li><a href="#">Felis varius pellentesque potenti</a></li>
+                                <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                            </ul>
+                        </section>
+                        
+                    </div>
+                    <div class="3u">
+                        
+                        <!-- Links -->
+                        <section class="widget-links">
+                            <h2>Random Stuff</h2>
+                            <ul class="style2">
+                                <li><a href="#">Etiam feugiat condimentum</a></li>
+                                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                                <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                                <li><a href="#">Felis varius pellentesque potenti</a></li>
+                                <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                            </ul>
+                        </section>
+                        
+                    </div>
+                    <div class="3u">
+                        
+                        <!-- Links -->
+                        <section class="widget-links">
+                            <h2>Random Stuff</h2>
+                            <ul class="style2">
+                                <li><a href="#">Etiam feugiat condimentum</a></li>
+                                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                                <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                                <li><a href="#">Felis varius pellentesque potenti</a></li>
+                                <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                            </ul>
+                        </section>
+                        
+                    </div>
+                    <div class="3u">
+                        
+                        <!-- Contact -->
+                        <section class="widget-contact last">
+                            <h2>Contact Us</h2>
+                            <ul>
+                                <li><a href="#" class="fa fa-twitter solo"><span>Twitter</span></a></li>
+                                <li><a href="#" class="fa fa-facebook solo"><span>Facebook</span></a></li>
+                                <li><a href="#" class="fa fa-dribbble solo"><span>Dribbble</span></a></li>
+                                <li><a href="#" class="fa fa-google-plus solo"><span>Google+</span></a></li>
+                            </ul>
+                            <p>1234 Fictional Road Suite #5432<br>
+                                Nashville, Tennessee 00000-0000<br>
+                                (800) 555-0000</p>
+                        </section>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="12u">
+                        <div id="copyright">
+                            Robogals Science Challenge - an initiative of <a href="http://www.robogals.org">Robogals</a><br>
+                            <span class="small">Page design based upon template by <a href="http://html5up.net/">HTML5 UP</a> under <a href="http://html5up.net/license">Creative Commons Attribution 3.0</a>.</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        {% endblock footer %}
+    </body>
+</html>

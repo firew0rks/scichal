@@ -36,6 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'scichal_user',
+    'scichal_cms',
+    'scichal_submission',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,7 +68,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-au'
 
 TIME_ZONE = 'UTC'
 
@@ -80,3 +83,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Media, Static file storage locations
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'scichal_media_root/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'scichal_static_root/')
+
+
+# Custom Science Challenge User Model
+AUTH_USER_MODEL = 'scichal_user.SciChalUser'
