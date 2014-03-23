@@ -4,13 +4,27 @@
 # 2014 Robogals Software Team
 
 from django.contrib import admin
+from django.forms import TextInput
+from django.db import models
 
-from .models import SubmissionType,Submission
+from .models import AgeCategory,Question,SubmissionType,Submission
 
+class QuestionAdminInline(admin.TabularInline):
+    model = Question
+    extra = 4
+    
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size':'150'})},
+    }
+    
 class SubmissionTypeAdmin(admin.ModelAdmin):
     list_display = ('name', 'resource_id', 'max_users', 'date_open', 'date_close',)
     search_fields = ('name', 'resource_id',)
     ordering = ('resource_id',)
+    
+    inlines = [
+        QuestionAdminInline,
+    ]
     
     raw_id_fields = ('info_page',)
     
@@ -20,7 +34,7 @@ class SubmissionTypeAdmin(admin.ModelAdmin):
     ]
     
 class SubmissionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'submission_type', 'date_submitted',)
+    list_display = ('title', 'get_users', 'submission_type', 'age_category', 'date_submitted',)
     search_fields = ('title', 'body',)
     ordering = ('-date_submitted',)
     
@@ -28,10 +42,11 @@ class SubmissionAdmin(admin.ModelAdmin):
     filter_horizontal = ('users',)
     
     fieldsets = [
-        ('Basic information',   {'fields': ['title', 'submission_type', 'users', 'body']}),
+        ('Basic information',   {'fields': ['title', 'submission_type', 'users', 'age_category', 'body']}),
         ('Multimedia',          {'description': 'Multimedia should be filled in for entries. Images are only used for fallback.',
                                  'fields': ['youtube_id', 'image']}),
     ]
     
+admin.site.register(AgeCategory)
 admin.site.register(SubmissionType, SubmissionTypeAdmin)
 admin.site.register(Submission, SubmissionAdmin)

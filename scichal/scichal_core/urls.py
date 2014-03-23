@@ -25,6 +25,15 @@ urlpatterns = patterns('',
     url(r'^accounts/password/$', 'django.contrib.auth.views.password_change', {'template_name': 'password_change.html'}, name='password_change'),
     url(r'^accounts/password/done/$', 'django.contrib.auth.views.password_change_done', {'template_name': 'password_change_done.html'}, name='password_change_done'),
 
+    # Challenges (submissions)
+    url(r'^challenges/$', 'scichal_cms.views.page_render', kwargs=dict(resource_id='challenges')),
+    #url(r'^challenges/list/$', 'scichal_submission.views.submissiontype_list'),
+    #url(r'^challenges/(?P<resource_id>.+?)/submit/$', 'scichal_submission.views.submission_submit'),
+    url(r'^challenges/(?P<resource_id>.+?)/(?P<id>\d+)/$', 'scichal_submission.views.submission_display'),
+    url(r'^challenges/(?P<resource_id>.+?)/$', 'scichal_submission.views.submissiontype_display_info'),
+    
+    
+    
     # Custom basic CMS
     # Catches all other URLs, and assumes / to point to /home
     url(r'^$', 'scichal_cms.views.page_render', kwargs=dict(resource_id='home')),

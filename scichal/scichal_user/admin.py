@@ -28,10 +28,11 @@ class SciChalUserAdmin(UserAdmin):
         ),
     )
     
-    list_display = ('username', 'last_name', 'first_name', 'email', 'location_state', 'location_postcode')
-    search_fields = ('username', 'last_name', 'first_name', 'email', 'location_address')
+    list_display = ('username', 'last_name', 'first_name', 'email', 'location_state', 'location_postcode',)
+    search_fields = ('username', 'last_name', 'first_name', 'email',)
+    ordering = ('last_name', 'first_name', 'username',)
     
-    list_filter = ()
+    list_filter = ('location_state', 'is_superuser', 'is_active',)
     
     fieldsets = [
         ('User credentials',     {'fields': ['username', 'password']}),

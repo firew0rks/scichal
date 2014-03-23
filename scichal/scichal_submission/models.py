@@ -15,7 +15,7 @@ class SubmissionType(models.Model):
                                        validators.RegexValidator(r'^[\w-]+$', 'This value may contain only alphanumeric and _ or - characters.', 'invalid')
                                    ],)
                                    
-    info_page = models.ForeignKey('scichal_cms.Component', limit_choices_to={'enabled': True}, help_text='Page containing information for this item. If unneeded, simply point to a blank page. The URL will be overridden with this item\'s resource ID as described above.')
+    info_page = models.ForeignKey('scichal_cms.Component', help_text='Page containing information for this item. If unneeded, simply point to a blank page. The URL will be overridden with this item\'s resource ID as described above.')
     info_page_visible = models.BooleanField(default=True)
     
     submission_view_template = models.CharField(max_length=127, blank=True)
@@ -33,12 +33,25 @@ class SubmissionType(models.Model):
     def __str__(self):
         return self.name
     
+class AgeCategory(models.Model):
+    name = models.CharField(max_length=63, unique=False)
+    age_min = models.PositiveIntegerField(default=0)
+    age_max = models.PositiveIntegerField(default=18)
+    
+    class Meta:
+        verbose_name = "age category"
+        verbose_name_plural = "age categories"
+    
+    def __str__(self):
+        return "{} ({}-{})".format(self.name, self.age_min, self.age_max)
+        
 class Submission(models.Model):
     title = models.CharField(max_length=255, unique=False, blank=True, null=True)
     
     submission_type = models.ForeignKey(SubmissionType)
     
     users = models.ManyToManyField('scichal_user.SciChalUser', limit_choices_to={'is_active': True})
+    age_category = models.ForeignKey(AgeCategory)
     
     body = models.TextField('Body HTML')
     
@@ -49,3 +62,15 @@ class Submission(models.Model):
     
     def __str__(self):
         return self.title
+        
+    def get_users(self):
+        return ", ".join([user.get_full_name() for user in self.users.all()])
+    get_users.short_description = 'User list'
+
+class Question(models.Model):
+    question = models.CharField(max_length=1023, unique=False)
+    age_category = models.ForeignKey(AgeCategory, blank=True, null=True)
+    submission_type = models.ForeignKey(SubmissionType)
+    
+    def __str__(self):
+        return self.question
