@@ -8,9 +8,12 @@
     <div class="container">
         <div class="row">
             <div class="12u skel-cell-important">
-                    <div id="content">
-                        <h2>{{ submission.title }}</h2>
-                    </div>
+                <div id="content">
+                    <h2>{{ submission.title }}</h2>
+                    <span class="byline">{{ submission.get_users }}</span>
+                    <span class="byline">{{ submission.date_submitted|date:"r" }}</span>
+                    <span class="byline">{{ submission.age_category.name }} category</span>
+                </div>
             </div>
         </div>
     </div>
@@ -20,19 +23,11 @@
     <div class="container">
         <div class="row">
             <div class="12u skel-cell-important">
-                    <div id="content">
-                        <article class="last">
-                            <p>
-                                <span class="byline">{{ submission.get_users }}</span>
-                                <span class="byline">{{ submission.date_submitted|date:"r" }}</span>
-                                <span class="byline">{{ submission.age_category.name }} category</span>
-                            </p>
-                            <div>
-                            {{ submission.body|safe }}
-                            </div>
-                        </article>
-                    </div>
-
+                <div id="content">
+                    <article class="last">
+                        {{ submission.body|safe }}
+                    </article>
+                </div>
             </div>
         </div>
     </div>
