@@ -14,11 +14,11 @@ window._skel_config = {
 	normalizeCSS: true,
 	breakpoints: {
 		'desktop': {
-            range: "481-",
+            range: "768-",
             containers: 1200
         },
         '1000px': {
-            range:  "1000-",
+            range:  "1000-1200",
             containers: 960,
 			grid: {
 				gutters: 25
