@@ -4,6 +4,17 @@
 {% block title %} - {{ submission.title }}{% endblock %}
 
 {% block body %}
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="12u skel-cell-important">
+                    <div id="content">
+                        <h2>{{ submission.title }}</h2>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="youtube-wrapper"><iframe allowfullscreen="" frameborder="0" src="http://www.youtube.com/embed/{{ submission.youtube_id }}"></iframe></div>
 <div id="main-wrapper">
     <div class="container">
@@ -11,7 +22,6 @@
             <div class="12u skel-cell-important">
                     <div id="content">
                         <article class="last">
-                            <h2>{{ submission.title }}</h2>
                             <p>
                                 <span class="byline">{{ submission.get_users }}</span>
                                 <span class="byline">{{ submission.date_submitted|date:"r" }}</span>
