@@ -32,7 +32,7 @@ window._skel_config = {
 			}
 		},
 		'mobile': {
-            range: "-480",
+            range: "-768",
             containers: "fluid"
         },
 	}
