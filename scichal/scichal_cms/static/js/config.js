@@ -9,20 +9,32 @@
 */
 
 window._skel_config = {
-	preset: 'standard',
+	preset: 'default',
 	prefix: '/static/css/style',
 	normalizeCSS: true,
 	breakpoints: {
-		'1000px': {
+		'desktop': {
+            range: "481-",
+            containers: 1200
+        },
+        '1000px': {
+            range:  "1000-",
+            containers: 960,
 			grid: {
 				gutters: 25
 			}
 		},
 		'768px': {
+            range: "768-999",
+            containers: 720,
 			grid: {
 				gutters: 15
 			}
-		}
+		},
+		'mobile': {
+            range: "-480",
+            containers: "fluid"
+        },
 	}
 };
 
