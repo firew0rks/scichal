@@ -13,7 +13,7 @@
 body {
   line-height: 1.75em;
   font-size: 10.75pt;
-  min-width: 960px;
+  min-width: 720px;
 }
 ul.style2 li {
   line-height: 2.25em;
@@ -38,8 +38,8 @@ ul.style2 li {
   padding: 4em 0 4em 0;
 }
 #youtube-wrapper iframe {
-  width: 960px;
-  height: 540px;
+  width: 720px;
+  height: 405px;
 }
 #footer-wrapper {
   padding: 4em 0 6em 0;

@@ -17,6 +17,11 @@ window._skel_config = {
 			grid: {
 				gutters: 25
 			}
+		},
+		'768px': {
+			grid: {
+				gutters: 15
+			}
 		}
 	}
 };
