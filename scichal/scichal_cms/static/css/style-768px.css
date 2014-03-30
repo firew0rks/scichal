@@ -31,7 +31,7 @@ ul.style2 li {
 #header-wrapper {
   padding: 2em 0 0 0;
 }
-#header-wrapper .12u {
+#header-wrapper .row > * {
   padding-left: 0;
 }
 #features-wrapper {
