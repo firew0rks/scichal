@@ -18,7 +18,7 @@
                         <ul>
                             <li><a href="#">Submit an entry to a Challenge</a></li>
                             <li><a href="#">View your past entries</a></li>
-                            {% if user.is_staff %}<li><a href="{% url 'admin' %}">Open administration panel</a></li>{% endif %}
+                            {% if user.is_staff %}<li><a href="{% url admin:index %}">Open administration panel</a></li>{% endif %}
                         </ul>
                         
                         <h3>Account information</h3>
