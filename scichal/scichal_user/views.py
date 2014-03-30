@@ -30,7 +30,25 @@ def register(request):
             'show_title': True,
             'menu_items': menu_items,
             'dob_year_select_range': dob_year_select_range,
-            'dob_year_select_default': dob_year_select_default,
+            'dob_year_select_selected': dob_year_select_selected,
+            })
+    except TemplateDoesNotExist:
+        raise Http404('Template "{}" does not exist.'.format(requested_page.template))
+
+def account_page_display(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/accounts/login/')
+
+    menu_items = Component.objects.filter(enabled=True, menu_order__gt=0)
+    
+    template = 'profile.html'
+    
+    try:
+        return render(request, template, {
+            'title': 'Profile',
+            'show_title': True,
+            'menu_items': menu_items,
+            'user': request.user,
             })
     except TemplateDoesNotExist:
         raise Http404('Template "{}" does not exist.'.format(requested_page.template))

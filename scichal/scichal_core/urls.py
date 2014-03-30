@@ -3,6 +3,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth.models import Group
 
+from django.views.generic import RedirectView
+
 admin.autodiscover()
 
 # Hide groups (unused)
@@ -15,6 +17,10 @@ urlpatterns = patterns('',
     
     # Account management, Registration
     url(r'^register/$', 'scichal_user.views.register', name='register'),
+    
+    url(r'^accounts/profile/$', RedirectView.as_view(pattern_name='account_page_display')),
+    url(r'^accounts/$', 'scichal_user.views.account_page_display', name='account_page_display'),
+    
     
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}, name='login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}, name='logout'),

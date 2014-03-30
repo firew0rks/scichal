@@ -79,12 +79,12 @@
                                         <label for="phone">Phone number</label>
                                     </td>
                                     <td>
-                                        <input id="phone" pattern="[0-9]*" required></input>
+                                        <input id="phone" pattern="[0-9]*" title="Enter only numeric digits." required></input>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="dobmonth">Date of Birth (MM/YYYY)</label>
+                                        <label for="dobmonth">Date of Birth (Month/Year)</label>
                                     </td>
                                     <td>
                                         <select id="dobmonth">
@@ -102,7 +102,7 @@
                                             <option value="12">December</option>
                                         </select>
                                         <select id="dobyear">{% for year in dob_year_select_range %}
-                                            <option value="{{ year }}" {% if year == dob_year_select_default %}selected{% endif %}>{{ year }}</option>{% endfor %}
+                                            <option value="{{ year }}" {% if year == dob_year_select_selected %}selected{% endif %}>{{ year }}</option>{% endfor %}
                                         </select>
                                     </td>
                                 </tr>
@@ -211,7 +211,7 @@
                                         <label for="mentorphone">Phone number</label>
                                     </td>
                                     <td>
-                                        <input id="mentorphone" pattern="[0-9]*"></input>
+                                        <input id="mentorphone" pattern="[0-9]*" title="Enter only numeric digits."></input>
                                     </td>
                                 </tr>
                                 <tr>

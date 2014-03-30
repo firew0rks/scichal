@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} - {{ title }}{% endblock %}
+
+{% block body %}
+<div id="main-wrapper" style="background: rgba(255, 255, 255, 0.5);">
+    <div class="container">
+        <div class="row">
+            <div class="12u skel-cell-important">
+                <div id="content">
+                    <article class="last">
+                        <h2>Your Account</h2>
+                        
+                        <h3><a href="#">Submit an entry to a Minor or Major Challenge</a></h3>
+                        
+                        
+                        <h3>Profile information</h3>
+                        <table style="width: 100%;">
+                            <tr>
+                                <td colspan="2">
+                                    <h4>Participant account information</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="username">Username</label>
+                                </td>
+                                <td>
+                                    {{ user.username }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="password">Password</label>
+                                </td>
+                                <td>
+                                    <a href="/accounts/password/">Change your password</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <h4>Participant information</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="firstname">First name</label>
+                                </td>
+                                <td>
+                                    {{ user.first_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="lastname">Last name</label>
+                                </td>
+                                <td>
+                                    {{ user.last_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="email">Email address</label>
+                                </td>
+                                <td>
+                                    {{ user.email }} - <a href="#">Change</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="phone">Phone number</label>
+                                </td>
+                                <td>
+                                    {{ user.phone }} - <a href="#">Change</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="dobmonth">Date of Birth (Month/Year)</label>
+                                </td>
+                                <td>
+                                    {{ user.dob|date:"F Y" }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="locationaddress">Address</label>
+                                </td>
+                                <td>
+                                    <span style="white-space: pre-line;">{{ user.location_address }}</span><br>
+                                    {{ user.location_state }} {{ user.location_postcode }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <h4>School information</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="schoolname">Name</label>
+                                </td>
+                                <td>
+                                    {{ user.school_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="schooladdress">Address</label>
+                                </td>
+                                <td>
+                                    <span style="white-space: pre-line;">{{ user.school_address }}</span><br>
+                                    {{ user.school_state }} {{ user.school_postcode }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <h4>Mentor information</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="mentorfirstname">First name</label>
+                                </td>
+                                <td>
+                                    {{ user.mentor_first_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="mentorlastname">Last name</label>
+                                </td>
+                                <td>
+                                    {{ user.mentor_last_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="mentoremail">Email address</label>
+                                </td>
+                                <td>
+                                    {{ user.mentor_email }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="mentorphone">Phone number</label>
+                                </td>
+                                <td>
+                                    {{ user.mentor_phone }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="mentorrelationship">Relationship with participant</label>
+                                </td>
+                                <td>
+                                    <span style="white-space: pre-line;">{{ user.mentor_relationship }}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
