@@ -33,9 +33,9 @@ class SciChalUserManager(BaseUserManager):
                                  **extra_fields)
 
 class SciChalUser(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(('Username'), max_length=63, unique=True, help_text='Required. 63 characters or fewer. Letters, digits and @/./+/-/_ only.',
+    username = models.CharField(('Username'), max_length=63, unique=True, help_text='Required. 63 characters or fewer. Letters, digits and ./-/_ only.',
                     validators=[
-                        validators.RegexValidator(r'^[\w.@+-]+$', 'Enter a valid username.', 'invalid')
+                        validators.RegexValidator(r'^[\w.-]+$', 'Enter a valid username.', 'invalid')
                     ])
     
     first_name = models.CharField('First name', max_length=255, null=False, blank=False)

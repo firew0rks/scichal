@@ -13,7 +13,9 @@ urlpatterns = patterns('',
     # Admin
     url(r'^admin/', include(admin.site.urls)),
     
-    # Account management
+    # Account management, Registration
+    url(r'^register/$', 'scichal_user.views.register', name='register'),
+    
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}, name='login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}, name='logout'),
     
