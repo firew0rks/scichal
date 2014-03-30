@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^accounts/profile/$', RedirectView.as_view(pattern_name='account_page_display')),
     url(r'^accounts/$', 'scichal_user.views.account_page_display', name='account_page_display'),
     
+    url(r'^accounts/edit/$', 'scichal_user.views.account_edit_display', name='account_edit_display'),
+    
     
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}, name='login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}, name='logout'),
