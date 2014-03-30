@@ -20,7 +20,7 @@ def register(request):
     time_now_year = time_now.year
     
     dob_year_select_range = range((time_now_year-100),time_now_year+1)
-    dob_year_select_default = time_now_year-10
+    dob_year_select_selected = time_now_year-10
     
     template = 'register.html'
     
