@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} - {{ title }}{% endblock %}
+
+{% block body %}
+<div id="main-wrapper" style="background: rgba(255, 255, 255, 0.5);">
+    <div class="container">
+        <div class="row">
+            <div class="12u skel-cell-important">
+                <div id="content">
+                    <article class="last">
+                        <h2>Edit account information</h2>
+                        <p>To change information contained in non-editable fields, please <a href="#">contact us</a>.</p>
+                        <form action="." method="post">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>Participant account information</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="username">Username</label>
+                                    </td>
+                                    <td>
+                                        {{ user.username }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="password">Password</label>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'password_change' %}">Change your password</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>Participant information</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="firstname">First name</label>
+                                    </td>
+                                    <td>
+                                        {{ user.first_name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="lastname">Last name</label>
+                                    </td>
+                                    <td>
+                                        {{ user.last_name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="email">Email address</label>
+                                    </td>
+                                    <td>
+                                        <input id="email" type="email" required>{{ user.email }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="phone">Phone number</label>
+                                    </td>
+                                    <td>
+                                        <input id="phone" pattern="[0-9]*" title="Enter only numeric digits." required>{{ user.phone }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="dobmonth">Date of Birth (Month/Year)</label>
+                                    </td>
+                                    <td>
+                                        {{ user.dob|date:"F Y" }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="locationaddress">Address</label>
+                                    </td>
+                                    <td>
+                                        <textarea id="locationaddress" required>{{ user.location_address }}</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="locationstate">State/Territory</label>
+                                    </td>
+                                    <td>
+                                        <input id="locationstate" required>{{ user.location_state }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="locationpostcode">Postcode</label>
+                                    </td>
+                                    <td>
+                                        <input id="locationpostcode" maxlength="4" pattern="[0-9]{4}" title="Enter a 4 digit numeric postcode." required>{{ user.location_postcode }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>School information</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="schoolname">Name</label>
+                                    </td>
+                                    <td>
+                                        <input id="schoolname" required>{{ user.school_name }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="schooladdress">Address</label>
+                                    </td>
+                                    <td>
+                                        <textarea id="schooladdress" required>{{ user.school_address }}</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="schoolstate">State/Territory</label>
+                                    </td>
+                                    <td>
+                                        <input id="schoolstate" required>{{ user.school_state }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="schoolpostcode">Postcode</label>
+                                    </td>
+                                    <td>
+                                        <input id="schoolpostcode" maxlength="4" pattern="[0-9]{4}" title="Enter a 4 digit numeric postcode.">{{ user.school_postcode }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <h4>Mentor information</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="mentorfirstname">First name</label>
+                                    </td>
+                                    <td>
+                                        <input id="mentorfirstname" required>{{ user.mentor_first_name }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="mentorlastname">Last name</label>
+                                    </td>
+                                    <td>
+                                        <input id="mentorlastname" required>{{ user.mentor_last_name }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="mentoremail">Email address</label>
+                                    </td>
+                                    <td>
+                                        <input id="mentoremail" type="email" required>{{ user.mentor_email }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="mentorphone">Phone number</label>
+                                    </td>
+                                    <td>
+                                        <input id="mentorphone" pattern="[0-9]*" title="Enter only numeric digits.">{{ user.mentor_phone }}</input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="mentorrelationship">Relationship with participant</label>
+                                    </td>
+                                    <td>
+                                        <textarea id="mentorrelationship" required>{{ user.mentor_relationship }}</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <button type="submit">Submit</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

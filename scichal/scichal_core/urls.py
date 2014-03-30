@@ -13,7 +13,7 @@ admin.site.unregister(Group)
 # Set patterns for URLs
 urlpatterns = patterns('',
     # Admin
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls), name='admin'),
     
     # Account management, Registration
     url(r'^register/$', 'scichal_user.views.register', name='register'),

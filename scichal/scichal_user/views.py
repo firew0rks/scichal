@@ -41,11 +41,29 @@ def account_page_display(request):
 
     menu_items = Component.objects.filter(enabled=True, menu_order__gt=0)
     
-    template = 'profile.html'
+    template = 'account.html'
     
     try:
         return render(request, template, {
-            'title': 'Profile',
+            'title': 'Account',
+            'show_title': True,
+            'menu_items': menu_items,
+            'user': request.user,
+            })
+    except TemplateDoesNotExist:
+        raise Http404('Template "{}" does not exist.'.format(requested_page.template))
+        
+def account_edit_display(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/accounts/login/?next=/accounts/edit/')
+
+    menu_items = Component.objects.filter(enabled=True, menu_order__gt=0)
+    
+    template = 'account_edit.html'
+    
+    try:
+        return render(request, template, {
+            'title': 'Edit account',
             'show_title': True,
             'menu_items': menu_items,
             'user': request.user,
