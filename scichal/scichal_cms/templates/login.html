@@ -6,23 +6,35 @@
 {% block body_class %}{% endblock %}
 
 {% block body %}
-<table style="width: 100%;">
-    <tr>
-        <td>
-            <h2>Log in</h2>
-            <form method="post" action=".">
-                {% csrf_token %} 
-                {{ form.as_p }}
+<div id="main-wrapper" style="background: rgba(255, 255, 255, 0.5);">
+    <div class="container">
+        <div class="row">
+            <div class="12u skel-cell-important">
+                <div id="content">
+                    <article class="last">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>
+                                    <h2>Log in</h2>
+                                    <form method="post" action=".">
+                                        {% csrf_token %} 
+                                        {{ form.as_p }}
 
-                <input type="submit" value="Log in" />
-                <input type="hidden" name="next" value="{{ next }}" />
-            </form>
-            <p>Forgot password? <a href="{% url 'password_reset' %}">Reset it</a>!</p>
-        </td>
-        <td>
-            <h2>Register</h2>
-            <a href="{% url 'register' %}">Register</a>
-        </td>
-    </tr>
-</table>
+                                        <input type="submit" value="Log in" />
+                                        <input type="hidden" name="next" value="{{ next }}" />
+                                    </form>
+                                    <p>Forgot password? <a href="{% url 'password_reset' %}">Reset it</a>!</p>
+                                </td>
+                                <td>
+                                    <h2>Register</h2>
+                                    <a href="{% url 'register' %}">Register</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock body %}
