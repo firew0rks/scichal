@@ -12,7 +12,7 @@
                     <article class="last">
                         <h2>Your Account</h2>
                         
-                        <a href="/accounts/logout/">Log out</a>
+                        <a href="{% url 'logout' %}">Log out</a>
                         
                         <h3>Actions</h3>
                         <ul>
@@ -21,7 +21,7 @@
                         </ul>
                         
                         <h3>Profile information</h3>
-                        <p>You can review your information below.<br><i>If you require changes to non-editable fields, please contact us.</p>
+                        <p>You can review your information below.<br><i>If you require changes to non-editable fields, please contact us.</i></p>
                         <table style="width: 100%;">
                             <tr>
                                 <td colspan="2">
@@ -41,7 +41,7 @@
                                     <label for="password">Password</label>
                                 </td>
                                 <td>
-                                    <a href="/accounts/password/">Change your password</a>
+                                    <a href="{% url 'password_change' %}">Change your password</a>
                                 </td>
                             </tr>
                             <tr>
