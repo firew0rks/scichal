@@ -41,9 +41,12 @@ class SciChalUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField('First name', max_length=255, null=False, blank=False)
     last_name = models.CharField('Last name', max_length=255, null=False, blank=False)
     
-    email = models.EmailField('Email address', unique=True)
+    email = models.EmailField('Email address', unique=True, error_messages={'required': 'Your email is required.'})
     
-    phone = models.CharField('Phone number', max_length=15, blank=True, null=True)
+    phone = models.CharField('Phone number', max_length=15, blank=True, null=True,
+                    validators=[
+                        validators.RegexValidator(r'^\+{0,1}[0-9]+$','Enter a valid phone number.','invalid')
+                    ])
     
     dob = models.DateField('Date of Birth', blank=True, null=True)
     
@@ -60,18 +63,27 @@ class SciChalUser(AbstractBaseUser, PermissionsMixin):
     
     location_address = models.TextField('Address', blank=True, null=True)
     location_state = models.CharField('State', max_length=3, blank=True, null=True, choices=LOCATION_STATE_CHOICES)
-    location_postcode = models.CharField('Postcode', max_length=4, blank=True, null=True)
+    location_postcode = models.CharField('Postcode', max_length=4, blank=True, null=True,
+                    validators=[
+                        validators.RegexValidator(r'^[0-9]{4}$','Enter a valid postcode.','invalid')
+                    ])
+
+    school_name = models.CharField('School name', max_length=255, blank=True, null=True)
+    school_address = models.TextField('School address', blank=True, null=True)
+    school_state = models.CharField('School state', max_length=3, blank=True, null=True, choices=LOCATION_STATE_CHOICES)
+    school_postcode = models.CharField('School postcode', max_length=4, blank=True, null=True,
+                    validators=[
+                        validators.RegexValidator(r'^[0-9]{4}$','Enter a valid postcode.','invalid')
+                    ])
     
     mentor_first_name = models.CharField('Mentor first name', max_length=255, blank=True, null=True)
     mentor_last_name = models.CharField('Mentor last name', max_length=255, blank=True, null=True)
     mentor_email = models.EmailField('Mentor email address', blank=True, null=True)
-    mentor_phone = models.CharField('Mentor phone number', max_length=15, blank=True, null=True)
+    mentor_phone = models.CharField('Mentor phone number', max_length=15, blank=True, null=True,
+                    validators=[
+                        validators.RegexValidator(r'^\+{0,1}[0-9]+$','Enter a valid phone number.','invalid')
+                    ])
     mentor_relationship = models.CharField('Mentor relationship', max_length=255, blank=True, null=True)
-    
-    school_name = models.CharField('School name', max_length=255, blank=True, null=True)
-    school_address = models.TextField('School address', blank=True, null=True)
-    school_state = models.CharField('School state', max_length=3, blank=True, null=True, choices=LOCATION_STATE_CHOICES)
-    school_postcode = models.CharField('School postcode', max_length=4, blank=True, null=True)
     
     referral_statement = models.TextField('Referral statement', blank=True, null=True)
     

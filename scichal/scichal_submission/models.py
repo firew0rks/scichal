@@ -7,6 +7,9 @@ from django.db import models
 from django.core import validators
 from django.utils import timezone
 
+import os
+from uuid import uuid4
+
 class SubmissionType(models.Model):
     name = models.CharField(max_length=255, unique=False)
     
@@ -46,6 +49,19 @@ class AgeCategory(models.Model):
         return "{} ({}-{})".format(self.name, self.age_min, self.age_max)
         
 class Submission(models.Model):
+    # Based on http://stackoverflow.com/a/15141228
+    def upload_rand_filename(path):
+        def wrapper(instance, filename):
+            ext = filename.split('.')[-1]
+            
+            if (ext == filename):
+                filename = '{}'.format(uuid4().hex)
+            else:
+                filename = '{}.{}'.format(uuid4().hex, ext)
+            
+            return os.path.join(path, filename)
+        return wrapper
+    
     title = models.CharField(max_length=255, unique=False, blank=True, null=True)
     
     submission_type = models.ForeignKey(SubmissionType)
@@ -56,7 +72,7 @@ class Submission(models.Model):
     body = models.TextField('Body HTML')
     
     youtube_id = models.CharField('YouTube ID', max_length=15, blank=True, null=True)
-    image = models.ImageField(upload_to='submission_image', blank=True, null=True)
+    image = models.ImageField(upload_to=upload_rand_filename('submission_image'), blank=True, null=True)
     
     date_submitted = models.DateTimeField(auto_now_add=True)
     

@@ -10,6 +10,8 @@ from django.utils import timezone
 
 from scichal_cms.models import Component
 
+from .forms import SciChalUserAccountEditForm
+
 def register(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/accounts/profile/')
@@ -62,11 +64,19 @@ def account_edit_display(request):
     template = 'account_edit.html'
     
     try:
+        if (request.method == 'POST'):
+            form = SciChalUserAccountEditForm(request.POST,instance=request.user)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/accounts/')
+        else:
+            form = SciChalUserAccountEditForm(instance=request.user)
+
         return render(request, template, {
             'title': 'Edit account',
             'show_title': True,
             'menu_items': menu_items,
-            'user': request.user,
-            })
+            'form': form,
+        })
     except TemplateDoesNotExist:
         raise Http404('Template "{}" does not exist.'.format(requested_page.template))
