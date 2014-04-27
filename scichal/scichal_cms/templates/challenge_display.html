@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} - {{ title }}{% endblock %}
+
+{% block body %}
+{{ body|safe }}
+{% if not submissions %}
+<div id="main-wrapper" style="background: rgba(255, 255, 255, 0.5);">
+    <div class="container">
+        <div class="row">
+            <div class="12u skel-cell-important">
+                    <div id="content">
+                        <article class="last">
+                            <h2>No submissions have been received</h2>
+                            <p>Submit yours by clicking on the Submit link in the menu!</p>
+                        </article>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div id="features-wrapper" style="background: rgba(255, 255, 255, 0.5);">
+    <div class="container">
+        <div class="row">
+            {% for submission in submissions %}
+            <div class="4u">
+                <a href="{{ submission.id }}">
+                    <section class="box box-feature">
+                        <div class="image image-full"><img src="//img.youtube.com/vi/{{ submission.youtube_id }}/hqdefault.jpg" alt="{{ submission.title }}"></div>
+                        <div class="inner">
+                            <h2>{{ submission.title }}</h2>
+                            <span class="byline">{{ submission.get_users }}</span>
+                            <span class="byline">{{ submission.date_submitted|date:"r" }}</span>
+                            <span class="byline">{{ submission.age_category.name }} category</span>
+                        </div>
+                    </section>
+                </a>
+            </div>
+                {% if forloop.counter|divisibleby:3 %}
+        </div>
+        <div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock body %}

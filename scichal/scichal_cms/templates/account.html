@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} - {{ title }}{% endblock %}
+
+{% block body %}
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="12u skel-cell-important">
+                <div id="content">
+                    <article class="last">
+                        <h2>Welcome, {{ user.first_name }}</h2>
+                        
+                        <h3>Actions</h3>
+                        <ul>
+                            <li><a href="{% url 'logout' %}">Log out of Science Challenge</a></li>
+                            <li><a href="#">Submit an entry to a Challenge</a></li>
+                            <li><a href="#">View your past entries</a></li>
+                            {% if user.is_staff %}<li><a href="{% url 'admin:index' %}">Open administration panel</a></li>{% endif %}
+                        </ul>
+                        
+                        <h3>Account information</h3>
+                        <a href="{% url 'account_edit' %}">Edit all account information</a>
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>
+                                    Username
+                                </td>
+                                <td>
+                                    {{ user.username }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Password
+                                </td>
+                                <td>
+                                    <a href="{% url 'password_change' %}">Change your password</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <h4>Participant information</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    First name
+                                </td>
+                                <td>
+                                    {{ user.first_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Last name
+                                </td>
+                                <td>
+                                    {{ user.last_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Email address
+                                </td>
+                                <td>
+                                    {{ user.email }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Phone number
+                                </td>
+                                <td>
+                                    {{ user.phone }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Address
+                                </td>
+                                <td>
+                                    <span style="white-space: pre-line;">{{ user.location_address }}</span><br>
+                                    {{ user.location_state }} {{ user.location_postcode }}
+                                </td>
+                            </tr>
+                        </table>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
