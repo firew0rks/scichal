@@ -9,6 +9,9 @@ from django.utils import timezone
 
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
+import string
+import random
+
 class SciChalUserManager(BaseUserManager):
     def _create_user(self, username, email, password,
                      is_superuser, **extra_fields):
@@ -91,6 +94,15 @@ class SciChalUser(AbstractBaseUser, PermissionsMixin):
         help_text='Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.')
     date_joined = models.DateTimeField('Date joined', default=timezone.now)
+    
+    # http://stackoverflow.com/a/2257449
+    def generate_pin():
+        return ''.join(random.choice(string.digits) for _ in range(6))
+    
+    pin = models.CharField('PIN', max_length=6, blank=True, null=True, default=generate_pin,
+                    validators=[
+                        validators.RegexValidator(r'^[0-9]{6}$','Enter a valid PIN.','invalid')
+                    ])
     
     objects = SciChalUserManager()
     

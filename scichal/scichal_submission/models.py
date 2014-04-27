@@ -66,6 +66,15 @@ class Submission(models.Model):
     
     submission_type = models.ForeignKey(SubmissionType)
     
+    SUBMISSION_GROUP_TYPE = (
+                              (0, 'Individual'),
+                              (1, 'Standard Group'),
+                              (2, 'School Class'),
+                            )
+    
+    submission_group_type = models.IntegerField(choices=SUBMISSION_GROUP_TYPE, blank=True, null=True, default=0)
+
+    
     users = models.ManyToManyField('scichal_user.SciChalUser', limit_choices_to={'is_active': True})
     age_category = models.ForeignKey(AgeCategory)
     
