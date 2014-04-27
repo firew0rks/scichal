@@ -35,7 +35,7 @@ class SciChalUserAdmin(UserAdmin):
     list_filter = ('location_state', 'is_superuser', 'is_active',)
     
     fieldsets = [
-        ('User credentials',     {'fields': ['username', 'password']}),
+        ('User credentials',     {'fields': ['username', 'password', 'pin']}),
         ('Personal information', {'fields': ['first_name', 'last_name', 'email', 'phone', 'dob', 'location_address', 'location_state', 'location_postcode']}),
         ('Mentor',               {'fields': ['mentor_first_name', 'mentor_last_name', 'mentor_email', 'mentor_phone',  'mentor_relationship'], 'classes': ['collapse']}),
         ('School',               {'fields': ['school_name', 'school_address', 'school_state', 'school_postcode'], 'classes': ['collapse']}),

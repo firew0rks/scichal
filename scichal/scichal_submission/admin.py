@@ -42,7 +42,7 @@ class SubmissionAdmin(admin.ModelAdmin):
     filter_horizontal = ('users',)
     
     fieldsets = [
-        ('Basic information',   {'fields': ['title', 'submission_type', 'users', 'age_category', 'body']}),
+        ('Basic information',   {'fields': ['title', 'submission_type', 'users', 'submission_group_type', 'age_category', 'body']}),
         ('Multimedia',          {'description': 'Multimedia should be filled in for entries. Images are only used for fallback.',
                                  'fields': ['youtube_id', 'image']}),
     ]
