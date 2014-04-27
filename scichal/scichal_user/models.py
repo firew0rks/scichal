@@ -99,7 +99,7 @@ class SciChalUser(AbstractBaseUser, PermissionsMixin):
     def generate_pin():
         return ''.join(random.choice(string.digits) for _ in range(6))
     
-    pin = models.CharField('PIN', max_length=6, blank=True, null=True, default=generate_pin,
+    pin = models.CharField('PIN', max_length=6, default=generate_pin,
                     validators=[
                         validators.RegexValidator(r'^[0-9]{6}$','Enter a valid PIN.','invalid')
                     ])

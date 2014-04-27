@@ -72,7 +72,7 @@ class Submission(models.Model):
                               (2, 'School Class'),
                             )
     
-    submission_group_type = models.IntegerField(choices=SUBMISSION_GROUP_TYPE, blank=True, null=True, default=0)
+    submission_group_type = models.IntegerField(choices=SUBMISSION_GROUP_TYPE, default=0)
 
     
     users = models.ManyToManyField('scichal_user.SciChalUser', limit_choices_to={'is_active': True})
