@@ -4,18 +4,17 @@
 {% block title %} - {{ title }}{% endblock %}
 
 {% block body %}
-<div id="main-wrapper" style="background: rgba(255, 255, 255, 0.5);">
+<div id="main-wrapper">
     <div class="container">
         <div class="row">
             <div class="12u skel-cell-important">
                 <div id="content">
                     <article class="last">
-                        <h2>Your Account</h2>
-                        
-                        <a href="{% url 'logout' %}">Log out</a>
+                        <h2>Welcome, {{ user.first_name }}</h2>
                         
                         <h3>Actions</h3>
                         <ul>
+                            <li><a href="{% url 'logout' %}">Log out of Science Challenge</a></li>
                             <li><a href="#">Submit an entry to a Challenge</a></li>
                             <li><a href="#">View your past entries</a></li>
                             {% if user.is_staff %}<li><a href="{% url 'admin:index' %}">Open administration panel</a></li>{% endif %}
