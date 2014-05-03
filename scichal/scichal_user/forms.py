@@ -51,6 +51,7 @@ class SciChalUserChangeForm(forms.ModelForm):
 
     class Meta:
         model = SciChalUser
+        exclude = []
 
     def clean_password(self):
         return self.initial['password']
