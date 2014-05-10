@@ -13,7 +13,7 @@ from uuid import uuid4
 class SubmissionType(models.Model):
     name = models.CharField(max_length=255, unique=False)
     
-    resource_id = models.CharField('Resource ID', max_length=127, unique=True, help_text='Unique identifier for URL: /challenge/&lt;resource_id&gt;/. Further levels are not allowed.',
+    resource_id = models.CharField('Resource ID', max_length=127, unique=True, help_text='Unique identifier for URL: /challenges/&lt;resource_id&gt;/. Further levels are not allowed.',
                                    validators=[
                                        validators.RegexValidator(r'^[\w-]+$', 'This value may contain only alphanumeric and _ or - characters.', 'invalid')
                                    ],)

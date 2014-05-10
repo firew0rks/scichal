@@ -44,7 +44,7 @@ class SciChalUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField('First name', max_length=255, null=False, blank=False)
     last_name = models.CharField('Last name', max_length=255, null=False, blank=False)
     
-    email = models.EmailField('Email address', unique=True, error_messages={'required': 'Your email is required.'})
+    email = models.EmailField('Email address', error_messages={'required': 'Your email is required.'})
     
     phone = models.CharField('Phone number', max_length=15, blank=True, null=True,
                     validators=[
