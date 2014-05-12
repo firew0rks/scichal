@@ -96,6 +96,7 @@ class Question(models.Model):
     question = models.CharField(max_length=1023, unique=False)
     age_category = models.ForeignKey(AgeCategory, blank=True, null=True)
     submission_type = models.ForeignKey(SubmissionType)
+    include_in_body = models.BooleanField(default=True)
     
     def __str__(self):
         return self.question
