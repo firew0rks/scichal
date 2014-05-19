@@ -8,8 +8,6 @@ from django.http import Http404, HttpResponse
 from django.template import TemplateDoesNotExist
 from django.contrib.formtools.wizard.views import SessionWizardView
 
-import datetime
-
 from .models import SubmissionType,Submission
 import scichal_submission.forms
 

@@ -5,6 +5,10 @@
 
 from django import forms
 
+import datetime
+
+from .models import SubmissionType
+
 class SubmissionEntry1(forms.Form):
     """Choose a challenge to begin with."""
     available_challenges = forms.ChoiceField(SubmissionType.objects.filter( date_open__lte=datetime.now(),
