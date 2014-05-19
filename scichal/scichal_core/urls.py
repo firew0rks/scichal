@@ -5,6 +5,8 @@ from django.contrib.auth.models import Group
 
 from django.views.generic import RedirectView
 
+from scichal_submission.views import SubmissionEntryWizard, SUBMISSION_ENTRY_FORMS
+
 admin.autodiscover()
 
 # Hide groups (unused)
@@ -38,12 +40,10 @@ urlpatterns = patterns('',
     # Challenges (submissions)
     url(r'^challenges/$', 'scichal_cms.views.page_render', kwargs=dict(resource_id='challenges')),
     #url(r'^challenges/list/$', 'scichal_submission.views.submissiontype_list'),
-    #url(r'^challenges/(?P<resource_id>.+?)/submit/$', 'scichal_submission.views.submission_submit'),
+    url(r'^challenges/submit/$', SubmissionEntryWizard.as_view(SUBMISSION_ENTRY_FORMS)),
     url(r'^challenges/(?P<resource_id>.+?)/(?P<id>\d+)/$', 'scichal_submission.views.submission_display'),
     url(r'^challenges/(?P<resource_id>.+?)/$', 'scichal_submission.views.submissiontype_display_info'),
-    
-    
-    
+        
     # Custom basic CMS
     # Catches all other URLs, and assumes / to point to /home
     url(r'^$', 'scichal_cms.views.page_render', kwargs=dict(resource_id='home')),

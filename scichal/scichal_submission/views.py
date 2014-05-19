@@ -6,6 +6,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponse
 from django.template import TemplateDoesNotExist
+from django.contrib.formtools.wizard.views import SessionWizardView
+
+import datetime
 
 from .models import SubmissionType,Submission
 from scichal_cms.models import Component
@@ -38,3 +41,30 @@ def submission_display(request, resource_id, id):
             })
     except TemplateDoesNotExist:
         raise Http404('Template "{}" does not exist.'.format(requested_page.template))
+        
+
+SUBMISSION_ENTRY_FORMS = [  ("SubmissionEntry1", scichal_submission.forms.SubmissionEntry1),
+                            ("SubmissionEntry2", scichal_submission.forms.SubmissionEntry2),
+                            ]"""   ("SubmissionEntry3", scichal_submission.forms.SubmissionEntry3),
+                            ("SubmissionEntry4", scichal_submission.forms.SubmissionEntry4),
+                            ("SubmissionEntry5", scichal_submission.forms.SubmissionEntry5),
+                            ("SubmissionEntryConfirm", scichal_submission.forms.SubmissionEntryConfirm)
+                         ]"""
+
+SUBMISSION_ENTRY_TEMPLATES = {  "SubmissionEntry1": "submission_entry_standard.html",
+                                "SubmissionEntry2": "submission_entry_standard.html",
+                             }"""   "SubmissionEntry3": "submission_entry_standard.html",
+                                "SubmissionEntry4": "submission_entry_standard.html",
+                                "SubmissionEntry5": "submission_entry_standard.html",
+                                "SubmissionEntryConfirm": "submission_entry_confirmation.html"
+                             }"""
+
+@login_required
+class SubmissionEntryWizard(SessionWizardView):
+    def get_template_names(self):
+        return [SUBMISSION_ENTRY_TEMPLATES[self.steps.current]]
+    
+    def done(self, form_list, **kwargs):
+        return HttpResponseRedirect('/home/')      ## Change when complete
+        
+        
