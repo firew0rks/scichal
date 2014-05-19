@@ -7,7 +7,6 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import TemplateDoesNotExist
 from django.contrib.formtools.wizard.views import SessionWizardView
-from django.contrib.auth.decorators import login_required
 
 from .models import SubmissionType,Submission
 import scichal_submission.forms
@@ -66,8 +65,10 @@ class SubmissionEntryWizard(SessionWizardView):
     def get_template_names(self):
         return [SUBMISSION_ENTRY_TEMPLATES[self.steps.current]]
     
-    @login_required
     def get_form(self, step=None, data=None, files=None):
+        if not self.request.user.is_authenticated():
+            return HttpResponseRedirect('/accounts/login/?next=/submit/');
+        
         form = super(SubmissionEntryWizard, self).get_form(step, data, files)
         
         if step is None:
