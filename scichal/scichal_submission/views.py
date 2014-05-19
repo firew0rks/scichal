@@ -45,19 +45,21 @@ def submission_display(request, resource_id, id):
 
 SUBMISSION_ENTRY_FORMS = [  ("SubmissionEntry1", scichal_submission.forms.SubmissionEntry1),
                             ("SubmissionEntry2", scichal_submission.forms.SubmissionEntry2),
-                            ]"""   ("SubmissionEntry3", scichal_submission.forms.SubmissionEntry3),
-                            ("SubmissionEntry4", scichal_submission.forms.SubmissionEntry4),
-                            ("SubmissionEntry5", scichal_submission.forms.SubmissionEntry5),
-                            ("SubmissionEntryConfirm", scichal_submission.forms.SubmissionEntryConfirm)
-                         ]"""
+                         ]
+                            # ("SubmissionEntry3", scichal_submission.forms.SubmissionEntry3),
+                            # ("SubmissionEntry4", scichal_submission.forms.SubmissionEntry4),
+                            # ("SubmissionEntry5", scichal_submission.forms.SubmissionEntry5),
+                            # ("SubmissionEntryConfirm", scichal_submission.forms.SubmissionEntryConfirm)
+                         # ]
 
 SUBMISSION_ENTRY_TEMPLATES = {  "SubmissionEntry1": "submission_entry_standard.html",
                                 "SubmissionEntry2": "submission_entry_standard.html",
-                             }"""   "SubmissionEntry3": "submission_entry_standard.html",
-                                "SubmissionEntry4": "submission_entry_standard.html",
-                                "SubmissionEntry5": "submission_entry_standard.html",
-                                "SubmissionEntryConfirm": "submission_entry_confirmation.html"
-                             }"""
+                             }
+                                # "SubmissionEntry3": "submission_entry_standard.html",
+                                # "SubmissionEntry4": "submission_entry_standard.html",
+                                # "SubmissionEntry5": "submission_entry_standard.html",
+                                # "SubmissionEntryConfirm": "submission_entry_confirmation.html"
+                             # }
 
 @login_required
 class SubmissionEntryWizard(SessionWizardView):
