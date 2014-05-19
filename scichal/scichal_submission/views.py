@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponse
 from django.template import TemplateDoesNotExist
 from django.contrib.formtools.wizard.views import SessionWizardView
+from django.contrib.auth.decorators import login_required
 
 from .models import SubmissionType,Submission
 import scichal_submission.forms
