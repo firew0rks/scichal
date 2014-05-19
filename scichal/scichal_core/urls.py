@@ -42,7 +42,7 @@ urlpatterns = patterns('',
     #url(r'^challenges/list/$', 'scichal_submission.views.submissiontype_list'),
     url(r'^challenges/(?P<resource_id>.+?)/(?P<id>\d+)/$', 'scichal_submission.views.submission_display'),
     url(r'^challenges/(?P<resource_id>.+?)/$', 'scichal_submission.views.submissiontype_display_info'),
-    url(r'^challenges/submit/$', SubmissionEntryWizard.as_view(SUBMISSION_ENTRY_FORMS)),
+    url(r'^submit/$', SubmissionEntryWizard.as_view(SUBMISSION_ENTRY_FORMS)),
         
     # Custom basic CMS
     # Catches all other URLs, and assumes / to point to /home
