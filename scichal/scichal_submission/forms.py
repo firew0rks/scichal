@@ -14,7 +14,7 @@ class SubmissionEntry1(forms.Form):
     # available_challenges = forms.ChoiceField(SubmissionType.objects.filter( date_open__lte=datetime.now(),
                                                                             # date_close__gte=datetime.now(),
                                                                           # ))
-    available_challenges = forms.ChoiceField(SubmissionType.objects.all())
+    available_challenges = forms.ChoiceField(choices=SubmissionType.objects.all())
 
 SUBMISSION_GROUP_CHOICES = (
                                 ('1',   'Individual'),
