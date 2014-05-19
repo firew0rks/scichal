@@ -4,7 +4,7 @@
 # 2014 Robogals Software Team
 
 from django.shortcuts import render, get_object_or_404
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import TemplateDoesNotExist
 from django.contrib.formtools.wizard.views import SessionWizardView
 from django.contrib.auth.decorators import login_required
@@ -62,11 +62,19 @@ SUBMISSION_ENTRY_TEMPLATES = {  "SubmissionEntry1": "submission_entry_standard.h
                                 # "SubmissionEntryConfirm": "submission_entry_confirmation.html"
                              # }
 
-@login_required
 class SubmissionEntryWizard(SessionWizardView):
     def get_template_names(self):
         return [SUBMISSION_ENTRY_TEMPLATES[self.steps.current]]
     
+    @login_required
+    def get_form(self, step=None, data=None, files=None):
+        form = super(SubmissionEntryWizard, self).get_form(step, data, files)
+        
+        if step is None:
+            step = self.steps.current
+        
+        return form
+        
     def done(self, form_list, **kwargs):
         return HttpResponseRedirect('/home/')      ## Change when complete
         
