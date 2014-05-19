@@ -11,9 +11,10 @@ from .models import SubmissionType
 
 class SubmissionEntry1(forms.Form):
     """Choose a challenge to begin with."""
-    available_challenges = forms.ChoiceField(SubmissionType.objects.filter( date_open__lte=datetime.now(),
-                                                                            date_close__gte=datetime.now(),
-                                                                          ))
+    # available_challenges = forms.ChoiceField(SubmissionType.objects.filter( date_open__lte=datetime.now(),
+                                                                            # date_close__gte=datetime.now(),
+                                                                          # ))
+    available_challenges = forms.ModelChoiceField(queryset=SubmissionType.objects.all())
 
 SUBMISSION_GROUP_CHOICES = (
                                 ('1',   'Individual'),
