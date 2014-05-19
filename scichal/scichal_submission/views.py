@@ -11,6 +11,8 @@ from django.contrib.formtools.wizard.views import SessionWizardView
 import datetime
 
 from .models import SubmissionType,Submission
+import scichal_submission.forms
+
 from scichal_cms.models import Component
 
 def submissiontype_display_info(request, resource_id):
