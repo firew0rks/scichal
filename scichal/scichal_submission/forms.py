@@ -5,7 +5,7 @@
 
 from django import forms
 
-import datetime
+from datetime import datetime
 
 from .models import SubmissionType
 
