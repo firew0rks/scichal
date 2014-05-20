@@ -9,3 +9,4 @@
 local_settings.py
 scichal_media_root/
 scichal_static_root/
+scichal/scichal_core/settings.py

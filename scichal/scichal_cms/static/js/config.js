@@ -8,8 +8,21 @@
     Design based on Verti 2.5 by HTML5 UP | CCA 3.0 license | html5up.net/license
 */
 
+/*window._skel_config = {
+	preset: 'standard',
+	prefix: '/static/css/style',
+	resetCSS: true,
+	breakpoints: {
+		'1000px': {
+			grid: {
+				gutters: 25
+			}
+		}
+	}
+};*/
+
 window._skel_config = {
-	preset: 'default',
+	preset: 'standard',
 	prefix: '/static/css/style',
 	normalizeCSS: true,
 	breakpoints: {
