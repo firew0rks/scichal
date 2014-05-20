@@ -1,8 +1,9 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
 
 from django.contrib import admin
 from django.contrib.auth.models import Group
-
+from django.contrib.auth.decorators import login_required
 from django.views.generic import RedirectView
 
 from scichal_submission.views import SubmissionEntryWizard, SUBMISSION_ENTRY_FORMS
@@ -42,8 +43,17 @@ urlpatterns = patterns('',
     #url(r'^challenges/list/$', 'scichal_submission.views.submissiontype_list'),
     url(r'^challenges/(?P<resource_id>.+?)/(?P<id>\d+)/$', 'scichal_submission.views.submission_display'),
     url(r'^challenges/(?P<resource_id>.+?)/$', 'scichal_submission.views.submissiontype_display_info'),
-    url(r'^submit/$', SubmissionEntryWizard.as_view(SUBMISSION_ENTRY_FORMS)),
-        
+    url(r'^submit/$', login_required(SubmissionEntryWizard.as_view(SUBMISSION_ENTRY_FORMS)), name='submit_entry'),
+)
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += patterns('',
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )
+
+
+urlpatterns += patterns('',
     # Custom basic CMS
     # Catches all other URLs, and assumes / to point to /home
     url(r'^$', 'scichal_cms.views.page_render', kwargs=dict(resource_id='home')),

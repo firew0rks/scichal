@@ -8,7 +8,10 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import TemplateDoesNotExist
 from django.contrib.formtools.wizard.views import SessionWizardView
 
-from .models import SubmissionType,Submission
+from datetime import date, timedelta
+
+from .models import SubmissionType, Submission, AgeCategory
+
 import scichal_submission.forms
 
 from scichal_cms.models import Component
@@ -65,17 +68,34 @@ class SubmissionEntryWizard(SessionWizardView):
     def get_template_names(self):
         return [SUBMISSION_ENTRY_TEMPLATES[self.steps.current]]
     
-    def get_form(self, step=None, data=None, files=None):
-        if not self.request.user.is_authenticated():
-            return HttpResponseRedirect('/accounts/login/?next=/submit/');
+    def get_form_initial(self, step):
+        initial_vals = { }
+
+        if step == "SubmissionEntry2":
+            # Prefill with appropriate age category
+            user_dob = self.request.user.dob
+            
+            if user_dob:
+                user_age_years = int((date.today() - user_dob).days / 365.2425)    # http://stackoverflow.com/a/4828842
+                
+                try:
+                    age_category_obj = AgeCategory.objects.get( age_min__lte=user_age_years, age_max__gte=user_age_years )
+                    initial_vals = { "age_category": age_category_obj }
+                except AgeCategory.DoesNotExist:
+                    # Skip for invalid/unaccounted ages
+                    pass
+                    
+        return initial_vals
+    
+    # def get_form(self, step=None, data=None, files=None):
+        # form = super(SubmissionEntryWizard, self).get_form(step, data, files)
         
-        form = super(SubmissionEntryWizard, self).get_form(step, data, files)
+        # if step == "SubmissionEntry2":
+            # form.fields['checkbox_2'].widget.attrs['disabled'] = 'disabled'
         
-        if step is None:
-            step = self.steps.current
+        # return form
         
-        return form
-        
+    
     def done(self, form_list, **kwargs):
         return HttpResponseRedirect('/home/')      ## Change when complete
         

@@ -47,7 +47,13 @@ class AgeCategory(models.Model):
     
     def __str__(self):
         return "{} ({}-{})".format(self.name, self.age_min, self.age_max)
-        
+    
+SUBMISSION_GROUP_TYPE = (
+                          (0, 'Individual'),
+                          (1, 'Group (Standard)'),
+                          (2, 'Group (School Class)'),
+                        )
+                            
 class Submission(models.Model):
     # Based on http://stackoverflow.com/a/15141228
     def upload_rand_filename(path):
@@ -65,12 +71,6 @@ class Submission(models.Model):
     title = models.CharField(max_length=255, unique=False, blank=True, null=True)
     
     submission_type = models.ForeignKey(SubmissionType)
-    
-    SUBMISSION_GROUP_TYPE = (
-                              (0, 'Individual'),
-                              (1, 'Standard Group'),
-                              (2, 'School Class'),
-                            )
     
     submission_group_type = models.IntegerField(choices=SUBMISSION_GROUP_TYPE, default=0)
 

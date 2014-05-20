@@ -15,7 +15,7 @@
                         <h3>Actions</h3>
                         <ul>
                             <li><a href="{% url 'logout' %}">Log out of Science Challenge</a></li>
-                            <li><a href="#">Submit an entry to a Challenge</a></li>
+                            <li><a href="{% url 'submit_entry' %}">Submit an entry to a Challenge</a></li>
                             <li><a href="#">View your past entries</a></li>
                             {% if user.is_staff %}<li><a href="{% url 'admin:index' %}">Open administration panel</a></li>{% endif %}
                         </ul>
