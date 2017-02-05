@@ -11,7 +11,7 @@ from scichal_submission.views import SubmissionEntryWizard, SUBMISSION_ENTRY_FOR
 admin.autodiscover()
 
 # Hide groups (unused)
-admin.site.unregister(Group)
+#admin.site.unregister(Group)
 
 # Set patterns for URLs
 urlpatterns = patterns('',
@@ -46,11 +46,11 @@ urlpatterns = patterns('',
     url(r'^submit/$', login_required(SubmissionEntryWizard.as_view(SUBMISSION_ENTRY_FORMS)), name='submit_entry'),
 )
 
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += patterns('',
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    )
+# if settings.DEBUG:
+#     import debug_toolbar
+#     urlpatterns += patterns('',
+#         url(r'^__debug__/', include(debug_toolbar.urls)),
+#     )
 
 
 urlpatterns += patterns('',
